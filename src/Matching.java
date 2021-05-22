@@ -31,8 +31,7 @@ public class Matching
 	private static void command(String input) throws Exception
 	{
 		char c = input.charAt(0);
-		input = input.substring(1);
-		input.trim();
+		input = input.substring(2);
 		switch(c){
 			case '<': readData(input); break;
 			case '@': printData(Integer.parseInt(input)); break;
