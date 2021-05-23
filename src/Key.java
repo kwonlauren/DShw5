@@ -1,29 +1,28 @@
-public class Key implements KeyInterface<String>{
-
+public class Key implements Comparable<String> {
+    public String key;//length mush be 6
     private static final int KEY_LENGTH = 6;
-    private String key;//길이가 6인 string
-    private int hash;
 
-    public Key(String key){
-        this.key = key;
-        this.hash = hashFunc(key);
-    }
-
-    private static final int hashFunc(String key){
-        int hash=0;
-        for(int i=0; i<KEY_LENGTH; i++){
-            hash += key.charAt(i);
+    public Key(String key) {
+        try{
+            if(key.length()!=6) throw new IllegalArgumentException();
+            this.key = key;
+        }catch(IllegalArgumentException e){
+            System.err.println("key is too long.");
         }
-        return hash%100;
     }
 
     @Override
-    public String getKey() {
-        return key;
+    public int compareTo(String o) {
+        return key.compareTo(o);
     }
 
     @Override
-    public int getHash() {
-        return hash;
+    public int hashCode(){
+        int h=0;
+        for(int i=0; i<KEY_LENGTH; i++){
+            h += this.key.charAt(i);
+        }
+        return h%100;
     }
+
 }
