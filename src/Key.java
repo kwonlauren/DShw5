@@ -1,4 +1,4 @@
-public class Key implements Comparable<String> {
+public class Key extends Comparable<Key>{
     public String key;//length mush be 6
     private static final int KEY_LENGTH = 6;
 
@@ -12,9 +12,11 @@ public class Key implements Comparable<String> {
     }
 
     @Override
-    public int compareTo(String o) {
-        return key.compareTo(o);
+    public boolean equals(Object o){
+        return key.equals(o);
     }
+
+
 
     @Override
     public int hashCode(){
@@ -25,4 +27,8 @@ public class Key implements Comparable<String> {
         return h%100;
     }
 
+    @Override
+    public int compareTo(Key o) {
+        return this.key.compareTo(o.key);
+    }
 }

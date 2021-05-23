@@ -15,7 +15,7 @@ public class LinkedList <V extends Printable>{
         numItems++;
     }
 
-    public void printList(){
+    public void print(){
         LLNode<V> curr = head.next;
         while(curr.next != null){
             curr.item.print();
@@ -24,5 +24,7 @@ public class LinkedList <V extends Printable>{
         }//여기서 curr는 마지막 노드
         curr.item.print();
     }
+
+
 
 }

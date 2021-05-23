@@ -7,6 +7,6 @@ public class test {
         LL.append(a);
         LL.append(b);
         LL.append(c);
-        LL.printList();
+        //LL.print();
     }
 }
