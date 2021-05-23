@@ -1,17 +1,17 @@
-public class HashTable <K extends Comparable<K>, V extends Printable>{
+public class HashTable <K extends Comparable, V extends Printable>{
     private static final int SIZE = 100;
     private AVLTree<K, V> table[];
     public HashTable(){
-         table = (AVLTree<K, V>[]) new Object[100];
+         table = new AVLTree[100];
          for(int i=0; i<SIZE; i++) table[i] = null; //비어있는 AVL Tree 100개 만들기
     }
 
     public void insert(K key, V value){
         if(table[key.hashCode()] == null){
-            table[key.hashCode()] = new AVLTree<>(key, value); //새로운 tree 생성
+            table[key.hashCode()] = new AVLTree<>(key, value); //slot이 비어있으면 새로운 tree 생성
         }
         else{
-            table[key.hashCode()].insert(key, value);//기존 tree에 추가
+            table[key.hashCode()].insert(key, value);//slot이 차있으면 기존 tree에 추가
         }
     }
 

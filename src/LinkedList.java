@@ -25,6 +25,4 @@ public class LinkedList <V extends Printable>{
         curr.item.print();
     }
 
-
-
 }

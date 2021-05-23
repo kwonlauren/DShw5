@@ -3,7 +3,7 @@ public class AVLNode <K, V extends Printable>{
     public LinkedList<V> item;
     public AVLNode<K, V> left, right;
     public int height;
-    public AVLNode(K key, V value, AVLNode leftChild, AVLNode rightChild){//key가 처음 들어왔을 때 새로운 노드 생성.
+    public AVLNode(K key, V value, AVLNode<K, V> leftChild, AVLNode<K, V> rightChild){//key가 처음 들어왔을 때 새로운 노드 생성.
         this.key = key;
         item = new LinkedList<>();
         item.append(value);
@@ -22,7 +22,5 @@ public class AVLNode <K, V extends Printable>{
         catch (IllegalStateException e){
             System.err.println("NIL 생성시에만 사용가능");
         }
-
     }
-
 }

@@ -5,6 +5,7 @@ public class AVLTree <K extends Comparable, V extends Printable> implements Prin
 
     public AVLTree(K key, V value){
         root = NIL;
+        insert(key, value);
     }
 
     public boolean isEmpty(){
@@ -56,11 +57,11 @@ public class AVLTree <K extends Comparable, V extends Printable> implements Prin
 
     private void printItem(AVLNode tNode){
         if(tNode == root){
-            System.out.printf("%s", tNode.key);
+            System.out.printf("%s", tNode.key.toString());
             printItem(tNode.left);
             printItem(tNode.right);
         }else if(tNode != NIL){
-            System.out.printf(" %s", tNode.key);
+            System.out.printf(" %s", tNode.key.toString());
             printItem(tNode.left);
             printItem(tNode.right);
         }//tNode == NIL 이면 아무것도 안하기
@@ -70,7 +71,7 @@ public class AVLTree <K extends Comparable, V extends Printable> implements Prin
 
     private int needBalance(AVLNode t){
         int type = ILLEGAL;
-        if(t.left.height+1 < t.right.height){//type R
+                if(t.left.height+1 < t.right.height){//type R
             if(t.right.left.height <= t.right.right.height) type = RR;
             else type = RL;
         } else if (t.left.height > t.left.right.height+1){//type L
@@ -78,6 +79,7 @@ public class AVLTree <K extends Comparable, V extends Printable> implements Prin
             else type = LR;
         } else type = NO_NEED;
         return type;
+
     }
 
     private AVLNode balanceAVL(AVLNode tNode, int type){
@@ -125,6 +127,7 @@ public class AVLTree <K extends Comparable, V extends Printable> implements Prin
         LChild.height = 1 + Math.max(LChild.left.height, LChild.right.height);
         return LChild;
     }
+
 
 }
 

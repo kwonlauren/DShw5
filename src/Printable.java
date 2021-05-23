@@ -1,3 +1,3 @@
 public interface Printable {
-    public void print();
+    void print();
 }
