@@ -80,9 +80,36 @@ public class Matching
 		LinkedList<Pair> result = new LinkedList<>();
 		boolean exists = true;
 
+		if(hashTable.search(new Key(pattern.substring(0,6))) != null){
+			result = hashTable.search(new Key(pattern.substring(0,6))).shallowCopy();
+		}
+		for(int i=1; i<n-1; i++){
+			LinkedList<Pair> LL = hashTable.search(new Key(pattern.substring(6*i, 6*i+6)));
+			if(LL == null){
+				exists = false;
+				break;
+			}
+			result = compareLL(result, LL, 6*i);
+			if(result.numItems == 0){
+				exists = false;
+				break;
+			}
+		}
+		LinkedList<Pair> LL = hashTable.search(new Key(pattern.substring(len-6, len)));
+		if(LL == null){
+			exists = false;
+		} else{
+			result = compareLL(result, LL, len-6);
+			if(result.numItems == 0) exists = false;
+		}
 
+		if(exists == false){
+			System.out.println("(0, 0)");
+		} else{
+			result.print();
+		}
+		/*
 		Key k = new Key(pattern.substring(0, 6));
-
 		if(hashTable.search(k) != null) {
 			result = hashTable.search(k).shallowCopy(); // 처음 6글자 검색결과의 copy
 			if(len>6){
@@ -102,9 +129,10 @@ public class Matching
 			}
 		}
 		else exists = false;
-
 		if(exists) result.print();
 		else System.out.println("(0, 0)");
+		*/
+
 	}
 
 
