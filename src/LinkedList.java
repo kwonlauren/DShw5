@@ -1,6 +1,6 @@
 public class LinkedList <V extends Printable>{
-    private LLNode<V> head;
-    private int numItems;
+    public LLNode<V> head;
+    public int numItems;
 
     public LinkedList(){
         numItems = 0;
@@ -15,14 +15,33 @@ public class LinkedList <V extends Printable>{
         numItems++;
     }
 
+    // search
+    // delete
+
     public void print(){
-        LLNode<V> curr = head.next;
-        while(curr.next != null){
+        if(numItems==0){
+            //TODO
+        }else{
+            LLNode<V> curr = head.next;
+            while(curr.next != null){
+                curr.item.print();
+                System.out.print(" ");
+                curr = curr.next;
+            }//여기서 curr는 마지막 노드
             curr.item.print();
-            System.out.print(" ");
-            curr = curr.next;
-        }//여기서 curr는 마지막 노드
-        curr.item.print();
+            System.out.println("");
+        }
+    }
+
+    public LinkedList<V> shallowCopy(){
+        //V는 그대로 가져오는 shallow copy
+        LinkedList<V> newLL = new LinkedList<>();
+        LLNode<V> node = this.head.next;
+        while(node != null){
+            newLL.append(node.item);
+            node = node.next;
+        }
+        return newLL;
     }
 
 }
