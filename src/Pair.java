@@ -13,4 +13,7 @@ public class Pair implements Printable{
         System.out.printf("(%d, %d)",a,b);
     }
 
+    public String toString(){
+        return String.format("(%d, %d)", a, b);
+    }
 }

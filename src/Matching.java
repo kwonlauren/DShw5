@@ -27,7 +27,7 @@ public class Matching
 		}
 	}
 
-	private static void command(String input) throws Exception
+	private static void command(String input)
 	{
 		char c = input.charAt(0);
 		input = input.substring(2);
@@ -75,64 +75,51 @@ public class Matching
 	}
 
 	private static void searchPattern(String pattern){
+		/**
+		 * 처음 6자리를 검색해서 result에 저장.
+		 * result와 다음 6자리 검색결과를 모두 만족하는 pair를 추려서 result에 다시 저장한다. 추리기 = compareLL
+		 * 마지막에는 가장 끝의 6자리를 검색하고(6으로 나누어 떨어지지 않을 수도 있으므로) 위와 같이 result에 저장한다.
+		 */
 		int len = pattern.length();
-		int n = (int) Math.ceil(len/6);//조각의 총 개수
+		int n = (int) Math.ceil((double)len/6);//조각의 총 개수
 		LinkedList<Pair> result = new LinkedList<>();
 		boolean exists = true;
 
 		if(hashTable.search(new Key(pattern.substring(0,6))) != null){
+			//첫 조각 검색결과가 존재하는 경우, 그것을 copy해서 Result 초기화
 			result = hashTable.search(new Key(pattern.substring(0,6))).shallowCopy();
-		}
-		for(int i=1; i<n-1; i++){
-			LinkedList<Pair> LL = hashTable.search(new Key(pattern.substring(6*i, 6*i+6)));
-			if(LL == null){
-				exists = false;
-				break;
-			}
-			result = compareLL(result, LL, 6*i);
-			if(result.numItems == 0){
-				exists = false;
-				break;
-			}
-		}
-		LinkedList<Pair> LL = hashTable.search(new Key(pattern.substring(len-6, len)));
-		if(LL == null){
-			exists = false;
-		} else{
-			result = compareLL(result, LL, len-6);
-			if(result.numItems == 0) exists = false;
-		}
-
-		if(exists == false){
-			System.out.println("(0, 0)");
-		} else{
-			result.print();
-		}
-		/*
-		Key k = new Key(pattern.substring(0, 6));
-		if(hashTable.search(k) != null) {
-			result = hashTable.search(k).shallowCopy(); // 처음 6글자 검색결과의 copy
-			if(len>6){
-				for(int i=1; i<n-1; i++){
-					LinkedList<Pair> LL = hashTable.search(new Key(pattern.substring(i*6, i*6+6)));
-					result = compareLL(result, LL, 6);
+			if(len > 6){//len=6일 때는 result에 더이상 작업 필요x
+				for(int i=1; i<n-1; i++){//2번째 조각 ~ 마지막에서 두번째 조각
+					LinkedList<Pair> LL = hashTable.search(new Key(pattern.substring(6*i, 6*i+6)));
+					if(LL == null){
+						exists = false;
+						break;
+					}
+					result = compareLL(result, LL, 6*i);
 					if(result.numItems == 0){
 						exists = false;
 						break;
 					}
 				}
+				//마지막 조각에 대한 작업
 				LinkedList<Pair> LL = hashTable.search(new Key(pattern.substring(len-6, len)));
-				result = compareLL(result, LL, (len-1)%6+1);//interval = 1~6 되도록
-				if(result.numItems == 0) {
+				if(LL == null){
 					exists = false;
+				} else{
+					result = compareLL(result, LL, len-6);
+					if(result.numItems == 0) exists = false;
 				}
 			}
+		} else{//첫 조각부터 없는 경우
+			exists = false;
 		}
-		else exists = false;
-		if(exists) result.print();
-		else System.out.println("(0, 0)");
-		*/
 
+		//출력
+		if(exists == false){
+			System.out.println("(0, 0)");
+		} else{
+			System.out.println(result.toString());
+		}
 	}
 
 

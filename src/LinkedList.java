@@ -33,6 +33,23 @@ public class LinkedList <V extends Printable>{
         }
     }
 
+    public String toString(){
+        if(numItems == 0){
+            return null;
+        }else{
+            StringBuilder str = new StringBuilder();
+            LLNode<V> curr = head.next;
+            while(curr.next != null){
+                str.append(curr.item.toString());
+                str.append(" ");
+                curr = curr.next;
+            }//여기서 curr는 마지막 노드
+            str.append(curr.item.toString());
+            return str.toString();
+        }
+    }
+
+
     public LinkedList<V> shallowCopy(){
         //V는 그대로 가져오는 shallow copy
         LinkedList<V> newLL = new LinkedList<>();
