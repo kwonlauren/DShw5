@@ -1,4 +1,4 @@
-public class AVLNode <K, V extends Printable>{
+public class AVLNode <K extends Comparable<K>, V extends Printable>{
     public K key;
     public LinkedList<V> item;
     public AVLNode<K, V> left, right;

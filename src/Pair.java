@@ -1,5 +1,3 @@
-import java.sql.SQLOutput;
-
 public class Pair implements Printable{
     public int a;
     public int b;
@@ -8,6 +6,7 @@ public class Pair implements Printable{
         this.a = a;
         this.b = b;
     }
+
 
     public void print(){
         System.out.printf("(%d, %d)",a,b);

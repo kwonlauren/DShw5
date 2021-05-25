@@ -1,4 +1,4 @@
-public class HashTable <K extends Comparable, V extends Printable>{
+public class HashTable <K extends Comparable<K>, V extends Printable>{
     private static final int SIZE = 100;
     private AVLTree<K, V> table[];
     public HashTable(){

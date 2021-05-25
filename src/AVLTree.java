@@ -1,4 +1,4 @@
-public class AVLTree <K extends Comparable, V extends Printable> implements Printable{
+public class AVLTree <K extends Comparable<K>, V extends Printable> implements Printable{
     //강의자료 AVLTree 참고.
     private AVLNode<K,V> root;
     final AVLNode<K,V> NIL = new AVLNode<>(0);

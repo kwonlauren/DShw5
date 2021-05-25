@@ -1,4 +1,4 @@
-public class Key implements Comparable{
+public class Key implements Comparable<Key>{
     public String key;//length mush be 6
     private static final int KEY_LENGTH = 6;
 
@@ -16,11 +16,6 @@ public class Key implements Comparable{
     }
 
     @Override
-    public boolean equals(Object o){
-        return key.equals(o);
-    }
-
-    @Override
     public int hashCode(){
         int h=0;
         for(int i=0; i<KEY_LENGTH; i++){
@@ -30,17 +25,8 @@ public class Key implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        try{
-            if(o.getClass() != this.getClass()){
-                throw new UnsupportedOperationException();
-            }
-            Key o_key = (Key) o;
-            return this.key.compareTo(o_key.key);
-        } catch(UnsupportedOperationException e){
-            System.err.println("Cannot compare Key to something else.");
-            return -10;
-        }
+    public int compareTo(Key anotherKey) {
+        return this.key.compareTo(anotherKey.key);
     }
 
 

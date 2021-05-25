@@ -18,6 +18,7 @@ public class LinkedList <V extends Printable>{
     // search
     // delete
 
+
     public void print(){
         if(numItems==0){
             //TODO
@@ -32,6 +33,8 @@ public class LinkedList <V extends Printable>{
             System.out.println("");
         }
     }
+
+
 
     public String toString(){
         if(numItems == 0){
