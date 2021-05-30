@@ -1,4 +1,4 @@
-public class LinkedList <V extends Printable>{
+public class LinkedList <V>{
     public LLNode<V> head;
     public int numItems;
 
@@ -17,24 +17,6 @@ public class LinkedList <V extends Printable>{
 
     // search
     // delete
-
-
-    public void print(){
-        if(numItems==0){
-            //TODO
-        }else{
-            LLNode<V> curr = head.next;
-            while(curr.next != null){
-                curr.item.print();
-                System.out.print(" ");
-                curr = curr.next;
-            }//여기서 curr는 마지막 노드
-            curr.item.print();
-            System.out.println("");
-        }
-    }
-
-
 
     public String toString(){
         if(numItems == 0){

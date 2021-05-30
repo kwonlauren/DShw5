@@ -1,11 +1,11 @@
-public class AVLNode <K extends Comparable<K>, V extends Printable>{
+public class AVLNode <K extends Comparable<K>, V>{
     public K key;
     public LinkedList<V> item;
     public AVLNode<K, V> left, right;
     public int height;
     public AVLNode(K key, V value, AVLNode<K, V> leftChild, AVLNode<K, V> rightChild){//key가 처음 들어왔을 때 새로운 노드 생성.
         this.key = key;
-        item = new LinkedList<>();
+        item = new LinkedList<V>();
         item.append(value);
         left = leftChild;//직접 NIL로 넣어주기
         right = rightChild;

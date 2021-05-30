@@ -1,4 +1,4 @@
-public class AVLTree <K extends Comparable<K>, V extends Printable> implements Printable{
+public class AVLTree <K extends Comparable<K>, V> extends Object{
     //강의자료 AVLTree 참고.
     private AVLNode<K,V> root;
     final AVLNode<K,V> NIL = new AVLNode<>(0);
@@ -54,7 +54,7 @@ public class AVLTree <K extends Comparable<K>, V extends Printable> implements P
         else if(key.compareTo(tNode.key) < 0) return searchItem(tNode.left, key);
         else return searchItem(tNode.right, key);
     }
-
+/*
     public void print(){
         if(root == NIL) System.out.println("EMPTY");
         else{
@@ -73,6 +73,29 @@ public class AVLTree <K extends Comparable<K>, V extends Printable> implements P
             System.out.printf(" %s", tNode.key.toString());
             printItem(tNode.left);
             printItem(tNode.right);
+        }//tNode == NIL 이면 아무것도 안하기
+    }
+
+
+ */
+    public String toString(){
+        if(root == NIL) return null;
+        else{
+            StringBuilder str = new StringBuilder();
+            toStringItem(str, root);
+            return str.toString();
+        }
+    }
+
+    private void toStringItem(StringBuilder str, AVLNode<K, V> tNode){
+        if(tNode == root){
+            str.append(tNode.key.toString());
+            toStringItem(str, tNode.left);
+            toStringItem(str, tNode.right);
+        } else if(tNode != NIL){
+            str.append(String.format(" %s", tNode.key.toString()));
+            toStringItem(str, tNode.left);
+            toStringItem(str, tNode.right);
         }//tNode == NIL 이면 아무것도 안하기
     }
 

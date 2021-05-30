@@ -71,7 +71,9 @@ public class Matching
 	}
 
 	private static void printData(int index){
-		hashTable.print(index);
+		String str = hashTable.toString(index);
+		if(str == null) System.out.println("EMPTY");
+		else System.out.println(str);
 	}
 
 	private static void searchPattern(String pattern){

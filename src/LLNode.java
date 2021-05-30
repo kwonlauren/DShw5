@@ -1,4 +1,4 @@
-public class LLNode <V extends Printable> {
+public class LLNode <V> {
     //강의자료 Linked list 참고함.
     public V item;
     public LLNode<V> next;
